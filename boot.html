@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booting Win12 Core...</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/boot.css">
+</head>
+<body>
+    <canvas id="particles"></canvas>
+    <div class="boot-container">
+        <div class="logo-glow">
+            <div class="win-logo">
+                <div></div><div></div><div></div><div></div>
+            </div>
+        </div>
+        <div class="loading-text" id="status-text">Initializing BIOS...</div>
+        <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+    </div>
+    <script>
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const particles = Array.from({length: 50}, () => ({
+            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5, size: Math.random() * 2
+        }));
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        const statuses = ["Initializing AI Core...", "Loading Kernel...", "Mounting Virtual FS...", "Starting Desktop Session..."];
+        const statusEl = document.getElementById('status-text');
+        const progressEl = document.getElementById('progress');
+        let step = 0;
+        const interval = setInterval(() => {
+            step++;
+            progressEl.style.width = `${(step / statuses.length) * 100}%`;
+            if (step < statuses.length) statusEl.innerText = statuses[step];
+            else {
+                clearInterval(interval);
+                document.body.style.opacity = 0;
+                setTimeout(() => window.location.href = 'login.html', 800);
+            }
+        }, 800);
+    </script>
+</body>
+</html>
