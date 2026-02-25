@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Windows 12 WebOS Concept</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+    <div id="boot-screen">
+        <div class="logo-container">
+            <div class="win-logo-piece piece-1"></div>
+            <div class="win-logo-piece piece-2"></div>
+            <div class="win-logo-piece piece-3"></div>
+            <div class="win-logo-piece piece-4"></div>
+        </div>
+        <div class="spinner"></div>
+    </div>
+
+    <div id="os-environment">
+        
+        <div id="task-view-overlay" class="glass-heavy">
+            <h2>Desktops</h2>
+            <div class="desktop-thumbnails">
+                <div class="desktop-thumb active">Desktop 1</div>
+                <div class="desktop-thumb">Desktop 2</div>
+                <div class="desktop-thumb add-desktop"><i class="ph ph-plus"></i></div>
+            </div>
+        </div>
+
+        <div class="window glass draggable" id="ai-panel" style="top: 50px; right: 50px; width: 350px;">
+            <div class="window-header">
+                <div class="header-title"><i class="ph ph-sparkle"></i> System AI</div>
+                <div class="window-controls">
+                    <button class="win-btn close-btn" onclick="closeWindow('ai-panel')"><i class="ph ph-x"></i></button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="ai-status">
+                    <div class="orb"></div>
+                    <span>AI Assistant Active</span>
+                </div>
+                <div class="ai-metrics">
+                    <div class="metric"><span>CPU Neural</span> <div class="bar"><div class="fill" style="width: 45%;"></div></div></div>
+                    <div class="metric"><span>Mem Sync</span> <div class="bar"><div class="fill" style="width: 78%;"></div></div></div>
+                </div>
+                <div class="ai-chat">
+                    <div class="chat-message bot">System optimized. Ready for your commands.</div>
+                    <input type="text" placeholder="Ask AI to adjust settings..." class="glass-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="window glass draggable" id="explorer" style="top: 150px; left: 150px; width: 600px; height: 400px; display: none;">
+            <div class="window-header">
+                <div class="header-title"><i class="ph ph-folder-open"></i> File Explorer</div>
+                <div class="window-controls">
+                    <button class="win-btn minimize-btn"><i class="ph ph-minus"></i></button>
+                    <button class="win-btn maximize-btn"><i class="ph ph-square"></i></button>
+                    <button class="win-btn close-btn" onclick="closeWindow('explorer')"><i class="ph ph-x"></i></button>
+                </div>
+            </div>
+            <div class="window-content explorer-grid">
+                <div class="folder"><i class="ph-fill ph-folder" style="color: #60a5fa;"></i><span>Documents</span></div>
+                <div class="folder"><i class="ph-fill ph-folder" style="color: #60a5fa;"></i><span>Projects</span></div>
+                <div class="folder"><i class="ph-fill ph-folder" style="color: #60a5fa;"></i><span>Assets</span></div>
+                <div class="folder file"><i class="ph-fill ph-image" style="color: #f472b6;"></i><span>concept.png</span></div>
+            </div>
+        </div>
+
+        <div id="taskbar-container">
+            <div id="taskbar" class="glass">
+                <button class="taskbar-icon start-btn" title="Start"><i class="ph-fill ph-squares-four"></i></button>
+                <div class="divider"></div>
+                <button class="taskbar-icon" onclick="openWindow('explorer')" title="Files"><i class="ph ph-folder"></i></button>
+                <button class="taskbar-icon" title="Browser"><i class="ph ph-globe"></i></button>
+                <button class="taskbar-icon" title="Terminal"><i class="ph ph-terminal-window"></i></button>
+                <div class="divider"></div>
+                <button class="taskbar-icon ai-btn" onclick="toggleWindow('ai-panel')" title="AI Control"><i class="ph ph-sparkle"></i></button>
+                <button class="taskbar-icon" onclick="toggleTaskView()" title="Task View"><i class="ph ph-cards"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
