@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 12 WebOS</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/window.css">
+    <link rel="stylesheet" href="css/editor.css">
+</head>
+<body class="wallpaper-bg parallax-wrapper">
+    
+    <div id="desktop" class="desktop-area">
+        <div id="ai-panel" class="glass-panel ai-sidebar right-slide">
+            <h3><span class="ai-icon">✨</span> System AI</h3>
+            <div class="stats">
+                <div class="stat-row"><span>Neural CPU</span><div class="bar"><div id="cpu-bar"></div></div></div>
+                <div class="stat-row"><span>RAM Sync</span><div class="bar"><div id="ram-bar"></div></div></div>
+            </div>
+            <div class="chat-area" id="ai-chat"></div>
+            <input type="text" id="ai-input" class="glass-input" placeholder="Ask AI...">
+            <div class="theme-toggles">
+                <button onclick="setTheme('dark')">Dark</button>
+                <button onclick="setTheme('light')">Light</button>
+            </div>
+        </div>
+
+        <div class="window glass-panel draggable" id="editor-win" style="display: none; top: 50px; left: 50px; width: 800px; height: 500px;">
+            <div class="win-header">
+                <span class="win-title">Code Studio</span>
+                <div class="win-controls">
+                    <button class="win-btn min"></button><button class="win-btn max"></button><button class="win-btn close" data-target="editor-win"></button>
+                </div>
+            </div>
+            <div class="win-body split-layout">
+                <div class="editor-container">
+                    <div class="toolbar"><button id="save-code">💾 Save</button></div>
+                    <div class="code-wrapper">
+                        <textarea id="code-input" spellcheck="false">&lt;h1&gt;Hello Win12&lt;/h1&gt;&#10;&lt;style&gt;h1{color: #3b82f6; font-family: sans-serif;}&lt;/style&gt;</textarea>
+                        <pre id="code-output" aria-hidden="true"><code></code></pre>
+                    </div>
+                </div>
+                <div class="preview-container"><iframe id="live-preview"></iframe></div>
+            </div>
+            <div class="resize-handle"></div>
+        </div>
+    </div>
+
+    <div class="taskbar glass-panel">
+        <div class="tb-left">
+            <button class="tb-icon start-btn">⊞</button>
+            <button class="tb-icon" data-open="editor-win">{"}</button>
+        </div>
+        <div class="tb-center" id="multi-desktop-indicator">
+            <span class="desktop-dot active"></span><span class="desktop-dot"></span>
+        </div>
+        <div class="tb-right">
+            <button class="tb-icon ai-toggle">✨</button>
+            <div class="clock" id="system-clock">12:00 PM</div>
+        </div>
+    </div>
+
+    <script src="js/core.js"></script>
+    <script src="js/desktop.js"></script>
+    <script src="js/windowManager.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/ai.js"></script>
+</body>
+</html>
